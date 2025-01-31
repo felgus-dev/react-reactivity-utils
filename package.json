@@ -1,0 +1,50 @@
+{
+  "name": "react-reactivity-utils",
+  "version": "0.1.0",
+  "main": "./dist/react-reactivity-utils.cjs",
+  "module": "./dist/react-reactivity-utils.mjs",
+  "types": "./dist/react-reactivity-utils.d.ts",
+  "unpkg": "./dist/react-reactivity-utils.js",
+  "exports": {
+    ".": {
+      "require": "./dist/react-reactivity-utils.cjs",
+      "import": "./dist/react-reactivity-utils.mjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && dts-bundle-generator --config ./bundle-generator.config.ts",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.0",
+    "dts-bundle-generator": "^9.5.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felgus-dev/react-reactivity-utils"
+  },
+  "keywords": [
+    "react",
+    "reactivity",
+    "utils"
+  ],
+  "author": "Felipe Gustavo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/felgus-dev/react-reactivity-utils/issues"
+  },
+  "homepage": "https://github.com/felgus-dev/react-reactivity-utils#readme",
+  "files": [
+    "dist/**",
+    "package.json",
+    "README.md"
+  ]
+}
