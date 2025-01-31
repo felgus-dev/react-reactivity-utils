@@ -1,6 +1,7 @@
 import path from "path";
 import { defineConfig } from "vite";
 import packageJson from "./package.json";
+import { externalizeDeps } from "vite-plugin-externalize-deps";
 
 const getPackageName = () => {
   return packageJson.name;
@@ -21,6 +22,17 @@ const fileName = {
 };
 
 module.exports = defineConfig({
+  plugins: [
+    externalizeDeps({
+      deps: true,
+      devDeps: false,
+      except: [],
+      nodeBuiltins: true,
+      optionalDeps: true,
+      peerDeps: true,
+      useFile: path.join(process.cwd(), "package.json"),
+    }),
+  ],
   test: {
     globals: true,
   },
