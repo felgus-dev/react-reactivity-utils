@@ -1,11 +1,5 @@
-import * as React from 'react';
+import { useCoreReactive } from "../core";
 
-export const useMemoState = (memoFn: () => any, depsList: any[]) => {
-  const [state, setState] = React.useState(() => memoFn());
-
-  React.useEffect(() => {
-    setState(memoFn());
-  }, depsList)
-
-  return [state, setState];
+export const useMemoState = <T,>(factory: () => T, deps?: React.DependencyList) => {
+  return useCoreReactive(factory, deps);
 };
