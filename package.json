@@ -1,6 +1,6 @@
 {
   "name": "react-reactivity-utils",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./dist/react-reactivity-utils.cjs",
   "module": "./dist/react-reactivity-utils.mjs",
   "types": "./dist/react-reactivity-utils.d.ts",
@@ -8,7 +8,8 @@
   "exports": {
     ".": {
       "require": "./dist/react-reactivity-utils.cjs",
-      "import": "./dist/react-reactivity-utils.mjs"
+      "import": "./dist/react-reactivity-utils.mjs",
+      "types": "./dist/react-reactivity-utils.d.ts"
     }
   },
   "scripts": {
