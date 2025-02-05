@@ -1,6 +1,6 @@
 {
   "name": "react-reactivity-utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "./dist/react-reactivity-utils.cjs",
   "module": "./dist/react-reactivity-utils.mjs",
   "types": "./dist/react-reactivity-utils.d.ts",
