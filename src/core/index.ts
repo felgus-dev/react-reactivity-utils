@@ -6,9 +6,6 @@ export const useCoreReactive = <T,>(factory: () => T, deps: React.DependencyList
     const [memoSignalCache, setMemoSignalCache] = useState(() => memoSignal);
     const [state, setState] = useState(() => factory());
   
-    console.log('memoSignal',{
-      memoSignal: Object.is(memoSignal, memoSignalCache)
-    })
     if (!Object.is(memoSignal, memoSignalCache)) {
       const newMemoValue = factory();
   
