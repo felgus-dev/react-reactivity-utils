@@ -1,41 +1,32 @@
 import { useRef, useState, useEffect } from "react";
 
-type Effect = (sync: () => void) => () => void;
-type CreateSideEffect =( effect: Effect) => () => void;
-const createSideEffect = (sync: () => void) => {
-  let func: Effect = () => () => undefined;
+type ReturnedEffects = {
+  [key: string]: (...args: unknown[]) => void;
+};
+type Cleanup = {
+  cleanup?: () => void;
+};
 
-  return (effect?: Effect) => {
-    if (effect) {
-      func = effect;
-    } else {
-      return func(sync);
-    }
-  }
-}
+type StableFunction<T> = (
+  set: React.Dispatch<React.SetStateAction<T>>,
+  ref: React.RefObject<unknown>
+) => ReturnedEffects & Cleanup;
 
-export const useSideEffect = <T,>(factory: (effect: CreateSideEffect, ref: React.MutableRefObject<null>) => T | undefined, initialValue: T) => {
-  const ref = useRef(null);
-  const flag = useRef(false);
+export function useSideEffect <T>(stableEffect: StableFunction<T>, initialValue: T): [T, React.RefObject<unknown>, ReturnType<typeof stableEffect>] {
   const [value, setValue] = useState<T>(() => initialValue);
+  const [effects, setEffects] = useState<ReturnedEffects>({});
+  const flag = useRef(false);
+  const ref = useRef(null);
+  const stable = useRef(stableEffect);
 
   useEffect(() => {
-    const effect = createSideEffect(sync);
-    function sync() {
-      const newValue = factory(effect as CreateSideEffect, ref);
-      if (newValue !== undefined) {
-        setValue(newValue);
-      }
-    }
-
-    const cleanup = effect();
-    if(flag.current === false){
+    if (flag.current === false){
       flag.current = true;
-      sync();
+      const {cleanup, ...effects} = stable.current(setValue, ref);
+      setEffects(effects)
+      return cleanup;
     }
+  }, []);
 
-    return cleanup;
-  }, [factory]);
-
-  return [value, ref];
+  return [value, ref, effects]
 };
