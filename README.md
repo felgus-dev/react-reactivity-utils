@@ -8,10 +8,24 @@ React uses a coarse-grain reactivity model, and there are some gaps in the conce
 we try to fill with these utils. Using them, you avoid common wronge usages of `useEffect` and improve
 your code redability and performance.
 
-<pre>npm install <a href="https://www.npmjs.com/package/react-reactivity-utils">react-reactivity-utils</a></pre>
+## Installation
 
-### useMemoState
+```
+yarn add react-reactivity-utils
+```
 
-### useConditionalMemo
+## Usage
 
-### useSideEffect
+See [the docs](https://github.com/felgus-dev/react-reactivity-utils/blob/main/DOC.md)
+
+## Contributing
+
+See the [Contributing](https://github.com/felgus-dev/react-reactivity-utils/blob/main/CONTRIBUTING.md) guide for details.
+
+## Changelog
+
+See the [the changelog list](https://github.com/felgus-dev/react-reactivity-utils/blob/main/CHANGELOG.md).
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/felgus-dev/react-reactivity-utils/blob/main/LICENSE.md).
